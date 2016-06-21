@@ -98,9 +98,25 @@ function install_powerline_precmd() {
   done
   precmd_functions+=(powerline_precmd)
 }
-
 if [ "$TERM" != "linux" ]; then
     install_powerline_precmd
 fi
 
 chuck
+
+# Behat settings
+BEHAT_PARAMS="{
+    \"suites\": {
+      \"default\": {
+        \"settings\": {
+          \"environmentParameters\": {
+            \"magazineSubscriberUsername\": \"test.magazine.subscriber@example.com\",
+            \"magazineSubscriberPassword\": \"magazine.subscriber\",
+            \"organisationalUserUsername\": \"test.organisational.user@example.com\",
+            \"organisationalUserPassword\": \"organisational.user\"
+          }
+        }
+      }
+    }
+  }"
+export BEHAT_PARAMS
