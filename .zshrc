@@ -120,3 +120,11 @@ BEHAT_PARAMS="{
     }
   }"
 export BEHAT_PARAMS
+
+# LastPass configs
+#source /home/janne/.zsh/lpass_bash_completion
+#source /home/janne/.zsh/lpwd_completion
+#export LPASS_CLIPBOARD_COMMAND="xclip -selection clipboard -in -l 1"
+export PASS_DISABLE_PINENTRY=1
+export LPASS_AGENT_TIMEOUT=28800
+#export LPASS_ASKPASS=/home/janne/bin/lpass_prompt
