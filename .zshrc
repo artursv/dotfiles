@@ -1,11 +1,11 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/arturs/.oh-my-zsh
+export ZSH=/home/arturs/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
- ZSH_THEME="robbyrussell"
+ZSH_THEME="pure"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -22,7 +22,7 @@ plugins=(chucknorris docker gitfast vagrant)
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin"
 export PATH="/usr/local/bin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -40,6 +40,11 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 # Everyday utilities
 alias ll='ls -laGFh'
 alias curl='curl -O'
+alias xc='exit'
+alias st='gs'
+alias cgrep='grep -n --color=always'
+
+export WKV_SITE_ENV=local
 
 # Git commands
 alias lg='git log --graph --color --all --pretty=format:"%C(yellow)%H%C(green)%d%C(reset)%n%x20%cd%n%x20%cn%x20(%ce)%n%x20%s%n"'
@@ -59,7 +64,7 @@ autoload bashcompinit
 bashcompinit
 source ~/.drush/drush.complete.sh
 
-alias care-servers="encfs /Users/arturs/Dropbox/WK\ Secure/Servers /Users/arturs/Servers && open ~/Servers/hosting-access.txt"
+alias care-servers="encfs /home/arturs/Dropbox/WK\ Secure/Servers /home/arturs/Servers"
 
 export PATH=~/.composer/vendor/bin:$PATH
 
@@ -80,51 +85,18 @@ alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall F
 export PATH="/Users/arturs/.platformsh/bin:$PATH"
 . '/Users/arturs/.platformsh/platform.rc' 2>/dev/null
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
-[ -s "/Users/arturs/.scm_breeze/scm_breeze.sh" ] && source "/Users/arturs/.scm_breeze/scm_breeze.sh"
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-# Powerline configs
-function powerline_precmd() {
-    PS1="$(~/powerline-shell.py $? --shell zsh 2> /dev/null)"
-}
-
-function install_powerline_precmd() {
-  for s in "${precmd_functions[@]}"; do
-    if [ "$s" = "powerline_precmd" ]; then
-      return
-    fi
-  done
-  precmd_functions+=(powerline_precmd)
-}
-if [ "$TERM" != "linux" ]; then
-    install_powerline_precmd
-fi
-
 chuck
 
-# Behat settings
-BEHAT_PARAMS="{
-    \"suites\": {
-      \"default\": {
-        \"settings\": {
-          \"environmentParameters\": {
-            \"magazineSubscriberUsername\": \"test.magazine.subscriber@example.com\",
-            \"magazineSubscriberPassword\": \"magazine.subscriber\",
-            \"organisationalUserUsername\": \"test.organisational.user@example.com\",
-            \"organisationalUserPassword\": \"organisational.user\"
-          }
-        }
-      }
-    }
-  }"
-export BEHAT_PARAMS
+# GO project dir
+export GOPATH=$HOME/Sites/go-apps
 
-# LastPass configs
-#source /home/janne/.zsh/lpass_bash_completion
-#source /home/janne/.zsh/lpwd_completion
-#export LPASS_CLIPBOARD_COMMAND="xclip -selection clipboard -in -l 1"
-export PASS_DISABLE_PINENTRY=1
-export LPASS_AGENT_TIMEOUT=28800
-#export LPASS_ASKPASS=/home/janne/bin/lpass_prompt
+autoload -U promptinit; promptinit
+prompt pure
+source /usr/local/src/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Ansible vault pass
+export WT_ANSIBLE_VAULT_FILE=/home/arturs/Servers/ansible_vault_pass.txt
+
+[ -s "/home/arturs/.scm_breeze/scm_breeze.sh" ] && source "/home/arturs/.scm_breeze/scm_breeze.sh"
+
+export GIT_REPO_DIR="$HOME/Sites"
