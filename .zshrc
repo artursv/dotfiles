@@ -100,3 +100,17 @@ export WT_ANSIBLE_VAULT_FILE=/home/arturs/Servers/ansible_vault_pass.txt
 [ -s "/home/arturs/.scm_breeze/scm_breeze.sh" ] && source "/home/arturs/.scm_breeze/scm_breeze.sh"
 
 export GIT_REPO_DIR="$HOME/Sites"
+
+### Functions
+cr () {
+  root=$(git rev-parse --show-cdup) 
+    if [ ! -z $root ]
+      then
+        cd $root
+        fi
+}
+
+
+# Automatically added by Platform.sh CLI installer
+export PATH="/home/arturs/.platformsh/bin:$PATH"
+. '/home/arturs/.platformsh/shell-config.rc' 2>/dev/null

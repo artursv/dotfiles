@@ -6,11 +6,12 @@ set ruler
 set relativenumber
 map <C-n> :NERDTreeToggle<CR>
 
-"set expandtab
+set expandtab
 set tabstop=2
 set shiftwidth=2
 set autoindent
 set smartindent
+set hlsearch
 
 if has("autocmd")
     " Drupal *.module and *.install files.
@@ -24,9 +25,15 @@ if has("autocmd")
     augroup END
 endif
 
-" Always show the status line
+"Always show the status line
 set laststatus=2
 
 " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
 
+map <space> :
+
+set cursorline
+hi CursorLine term=bold cterm=bold guibg=Grey40
+
+syntax enable
